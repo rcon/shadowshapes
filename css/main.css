@@ -1,0 +1,115 @@
+/*****
+shadowshapes.com - Roderick Constance
+CSS by Roderick Constance, 2011
+*****/
+
+/***** Reset *****/
+
+html, body, div, h1, h2, h3, h4, h5, h6, dl, dt, dd, p, blockquote, pre, form, fieldset, table, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+* { outline: none; }
+
+/***** Basic Elements *****/
+
+html {}
+
+body {
+    background-color: #222222;
+    color: #DDDDDD;
+}
+
+/***** Basic Layout *****/
+
+#left {
+    left: 0px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 260px;
+}
+
+#nav {
+    height: 460px;
+    padding: 0px 10px 0px 10px;
+}
+
+#copyright {
+    padding: 10px 10px 10px 10px;
+} 
+
+#right {
+    margin: 0px 0px 0px 260px;
+    padding: 0;
+    top: 0px;
+}
+
+/*
+#thumbs {
+    height: 100px;
+    margin: 0;
+    padding: 10px 20px 10px 20px;
+    position: relative;
+    width: 800px;
+}
+*/
+
+#thumbs {
+    width: 600px;
+    padding: 10px 20px 10px 20px;
+    height: 140px;
+}
+
+.scroll-pane {
+    overflow: auto;
+    white-space: nowrap;
+    width: 100%;
+}
+
+/*
+.jspCap {
+	display: block;
+	background: #eeeef4;
+}
+
+.jspHorizontalBar .jspCap {
+	width: 50px;
+	height: 100%;
+}
+*/
+
+#content {
+    margin: 0;
+    padding: 10px 20px 10px 20px;
+    position: relative;
+}
+
+#loader {
+    }
+    
+.loading {
+    height: 35px;
+    margin: 20px;
+    width: 35px;
+    background: url("../images/main/ajax-loader.gif") no-repeat center center;
+}
+
+.loaded {
+    background-color: #DDDDDD;
+    padding: 6px; 
+}
+
+img.thumbs {
+    vertical-align: top;
+}
+    
+a.thumbs:link {text-decoration: none; border-bottom: none; color: #222222; }
+a.thumbs:active {text-decoration: none; border-bottom: none; color: #222222; }
+a.thumbs:visited {text-decoration: none; border-bottom: none; color: #222222; }
+a.thumbs:hover {text-decoration: none; border-bottom: none; color: #DDDDDD; }
+
+.hidden { display: none; }
+.visible { display: inline-block;}

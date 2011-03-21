@@ -7,8 +7,81 @@ coded by Roderick Constance, 2011
 
 <HTML>
 <HEAD>
-    <TITLE>shadowshapes: Roderick Constance</TITLE>
-    <LINK rel="stylesheet" type="text/css" media="screen" href="main.css">
+<TITLE>shadowshapes: Roderick Constance</TITLE>
+<LINK rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
+<LINK rel="stylesheet" type="text/css" href="css/jquery.jscrollpane.css" media="all" />
+<SCRIPT type="text/javascript" src="js/jquery-1.4.2.min.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="js/jquery.jscrollpane.min.js"></SCRIPT>
+<SCRIPT type="text/javascript">
+
+function showContent(nav) {
+
+    var api = $('.scroll-pane').jScrollPane({autoReinitialise: true,horizontalDragMaxWidth: 20}).data('jsp');
+    getImages = "getImages.php?id=" + nav;
+    $.getJSON(getImages, function(json) {
+        var max = json.length;
+        if (max > 0)
+        {
+            loadImage(0, max);
+        }
+
+        function loadImage(index, max) {
+            if (index < max)
+            {
+                var newimg = new Image();
+                $(newimg).load(function () {
+                    api.getContentPane().append(this);
+                    $(this).hide();
+                    if (max - index > 1)
+                    {
+                        $(this).css('margin-right', '20px');
+                    }
+                    $(this).removeClass().addClass("thumbs");
+                    $(this).wrap('<A class="thumbs" href="#">');                    
+                    $(this).fadeIn(100, function() {
+                        loadImage(index + 1, max);
+                    });
+                }).attr('src', json[index]);
+            }
+        }
+    });
+    api.reinitialise();
+}
+
+$(document).ready(function() {
+
+
+    $('img.thumbs').live('click', function() {
+        // event.preventDefault();
+        $('#loader').fadeOut(500, function() {
+            $(this).empty();
+            $(this).removeClass().addClass("loading visible");
+            $(this).fadeIn(500);                      
+        });                
+        var url = ($(this).attr('src')).replace("thumbs", "content");
+        var _img = new Image();
+        $(_img).load(function() {
+            $('#loader').fadeOut(500, function() {
+                $(this).removeClass().addClass("loaded visible").append($(_img));
+                $(this).fadeIn(500);
+            });
+        }).attr('src', url);
+    });  
+
+    $('.scroll-pane').jScrollPane(
+        {
+            autoReinitialise: true,
+            horizontalDragMaxWidth: 20
+		}
+    );
+
+    var nav = 2011
+    showContent(nav);
+
+});
+
+
+</SCRIPT>
 </HEAD>
 <BODY>
     <DIV id="left">
@@ -20,12 +93,13 @@ coded by Roderick Constance, 2011
         </DIV>
     </DIV>
     <DIV id="right">
-        <DIV id="thumbs">
-        thumbs
-        </DIV>
+        <DIV id="thumbs" class="scroll-pane"></DIV>
         <DIV id="content">
-        content
+            <DIV id="loader" class="hidden"></DIV>
         </DIV>
     </DIV>
+
+
+
 </BODY>
 </HTML>
