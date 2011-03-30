@@ -33,8 +33,10 @@ body {
 }
 
 #nav {
-    height: 460px;
+    height: 440px;
+    width: 240px;
     padding: 0px 10px 0px 10px;
+    background: url("../images/main/tag.png") no-repeat center top;
 }
 
 #copyright {
@@ -47,48 +49,54 @@ body {
     top: 0px;
 }
 
-/*
-#thumbs {
-    height: 100px;
-    margin: 0;
-    padding: 10px 20px 10px 20px;
+#leftarrow {
+}
+
+#rightarrow {
+}
+
+.arrow {
+    float: left;
+    width: 40px;
+    height: 120px;
+    background-color: #666;
     position: relative;
-    width: 800px;
+    z-index: 1;
+    }
+
+#scroll {
+    height: 120px;
+    left: 0px;
+    position: relative;
+    /*width: 800px;*/
+    overflow: visible;
 }
-*/
+
+#gate {
+    height: 120px;
+    float: left;
+    overflow: hidden;
+}
 
 #thumbs {
-    width: 600px;
-    padding: 10px 20px 10px 20px;
-    height: 140px;
-}
-
-.scroll-pane {
-    overflow: auto;
+    height: 120px;
+    overflow: visible;
+    position: relative;
+    /*width: 0px;*/
     white-space: nowrap;
-    width: 100%;
+    float: left;
 }
-
-/*
-.jspCap {
-	display: block;
-	background: #eeeef4;
-}
-
-.jspHorizontalBar .jspCap {
-	width: 50px;
-	height: 100%;
-}
-*/
 
 #content {
-    margin: 0;
-    padding: 10px 20px 10px 20px;
     position: relative;
+    clear: both;
 }
 
 #loader {
-    }
+}
+
+.fadeMe {
+}
     
 .loading {
     height: 35px;
@@ -102,7 +110,7 @@ body {
     padding: 6px; 
 }
 
-img.thumbs {
+.img-thumbs {
     vertical-align: top;
 }
     

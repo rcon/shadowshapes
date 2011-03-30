@@ -1,0 +1,291 @@
+/*****
+shadowshapes.com - Roderick Constance
+CSS by Roderick Constance, 2011
+*****/
+
+/***** Reset *****/
+
+html, body, div, h1, h2, h3, h4, h5, h6, dl, dt, dd, p, blockquote, pre, form, fieldset, table, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+* { outline: none; }
+
+/***** Basic Elements *****/
+
+html {}
+
+body {
+    background-image: url("../images/main/crosshatch.gif");
+    background-color: #222222;
+    color: #222222;
+    /*font-family: 'Auto1', 'Lucida Sans', 'Optima', 'Georgia', 'Arial', sans-serif; */
+    font-size: 0.80em;  /* 1em = 16pt. */
+    /*font-weight: 400;  /* see font-face */
+}
+
+html, body { height: 100%;} /* hack for full background
+
+/***** Custom Fonts *****/
+
+@font-face {
+    font-family: "Auto1";
+    font-weight: 200;
+    src: url("../fonts/Auto1/Auto1-Light.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Auto1";
+    font-weight: 200;
+    font-style: italic;
+    src: url("../fonts/Auto1/Auto1-LightItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Auto1";
+    font-weight: 400;
+    src: url("../fonts/Auto1/Auto1-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Auto1";
+    font-weight: 400;
+    font-style: italic;
+    src: url("../fonts/Auto1/Auto1-Italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Auto1";
+    font-weight: 600;
+    src: url("../fonts/Auto1/Auto1-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Auto1";
+    font-weight: 600;
+    font-style: italic;
+    src: url("../fonts/Auto1/Auto1-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Auto1";
+    font-weight: 700;
+    src: url("../fonts/Auto1/Auto1-Black.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Auto1";
+    font-weight: 700;
+    font-style: italic;
+    src: url("../fonts/Auto1/Auto1-BlackItalic.ttf") format("truetype");
+}
+
+/***** Basic Layout *****/
+
+#window { /* full browser window */
+    min-height: 100%;
+    overflow: visible;
+    width: 100%;
+}
+
+#left {
+    left: 0px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 260px;
+}
+
+#nav {
+    height: 600px;
+    width: 240px;
+    padding: 0px 10px 0px 10px;
+    background: url("../images/main/newtag.png") no-repeat center top;
+}
+
+#menu {
+    padding: 130px 0 0 0;
+    font-family: "Auto1";
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#copyright {
+    padding: 12px 0 0 0;
+    text-align: center;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #aaaaaa;
+} 
+
+#caption {
+    width: 200px;
+    padding: 30px 0 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Auto1";
+    font-weight: 400;
+    font-size: 12px;
+}
+
+#right {
+    /*margin: 0px 0px 0px 270px;*/
+    padding: 0 0 0 0;
+    left: 270px;
+    top: 0px;
+    overflow: hidden;
+    position: absolute;
+}
+
+div.leftarrow {
+    text-align: left;
+}
+
+div.rightarrow {
+    text-align: right;
+}
+
+div.arrow {
+    float: left;
+    width: 40px;
+    height: 120px;
+    /*background-color: #666;*/
+    opacity: 0;
+    position: relative;
+    z-index: 1;
+    }
+
+#scroll {
+    height: 120px;
+    left: 0px;
+    position: relative;
+    /*width: 800px;*/
+    overflow: visible;
+}
+
+#gate {
+    height: 120px;
+    float: left;
+    overflow: hidden;
+}
+
+#thumbs {
+    height: 120px;
+    overflow: visible;
+    position: relative;
+    /*width: 0px;*/
+    white-space: nowrap;
+    float: left;
+}
+
+#content {
+    position: relative;
+    clear: both;
+}
+
+#contact {
+}
+
+#loader {
+    margin: 20px 0 0 40px;
+}
+
+.fadeMe {
+}
+
+#spinner {
+    text-align: center;
+}
+
+img.spinner {
+    vertical-align: middle;
+}
+
+.loading {
+    margin: 20px;
+    background: url("../images/main/ajax-loader.gif") no-repeat left center;
+}
+
+p.spinner {
+    text-indent: 20px;
+}
+
+.loaded {
+    background-color: #DDDDDD;
+    padding: 6px; 
+}
+
+img.arrows {
+    vertical-align: middle;
+    height: 100px;
+    width: 30px;
+}
+
+.img-thumbs {
+    vertical-align: top;
+}
+
+p.menu {
+    font-family: "Auto1";
+    font-style: italic;
+    font-size: 16px;
+    line-height: 100%;
+    text-indent: 10px;
+}
+
+p.title {
+    font-family: "Auto1";
+    font-style: italic;
+}
+
+p.menusub {
+    font-family: "Auto1";
+    font-style: italic;
+    line-height: 100%;
+    text-indent: 20px;
+    font-size: 16px;
+}
+
+p.copyright {
+    font-family: "Auto1";
+    font-weight: 400;
+    font-size: 12px;
+}
+
+p.caption {
+    font-family: "Auto1";
+    font-weight: 400;
+    font-size: 12px;
+}
+
+hr.dot {
+    border: 1px dotted;
+    width: 100%;
+}
+    
+hr.dash {
+    border: 1px dashed;
+    width: 100%;
+}
+
+a.nav:link { text-decoration: none; border-bottom: none; color: #222222; }
+a.nav:active { text-decoration: none; border-bottom: none; color: #ff0000; }
+a.nav:visited { text-decoration: none; border-bottom: none; color: #222222; }
+a.nav:hover { text-decoration: none; border-bottom: none; color: #555555; }
+
+a.caption:link { border-bottom: none; color: #55aaff; }
+a.caption:active { border-bottom: none; color: #ff0000; }
+a.caption:visited { border-bottom: none; color: #222222; }
+a.caption:hover { border-bottom: none; color: #555555; }
+    
+a.thumbs:link { text-decoration: none; border-bottom: none; color: #222222; }
+a.thumbs:active { text-decoration: none; border-bottom: none; color: #222222; }
+a.thumbs:visited { text-decoration: none; border-bottom: none; color: #222222; }
+a.thumbs:hover { text-decoration: none; border-bottom: none; color: #DDDDDD; }
+
+.hidden { display: none; }
+.visible { display: inline-block;}
