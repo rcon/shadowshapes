@@ -17,52 +17,152 @@ html, body, div, h1, h2, h3, h4, h5, h6, dl, dt, dd, p, blockquote, pre, form, f
 html {}
 
 body {
+    background-image: url("../images/main/crosshatch.gif");
     background-color: #222222;
-    color: #DDDDDD;
+    color: #222222;
+    /*font-family: 'Auto1', 'Lucida Sans', 'Optima', 'Georgia', 'Arial', sans-serif; */
+    font-size: 0.80em;  /* 1em = 16pt. */
+    /*font-weight: 400;  /* see font-face */
+}
+
+html, body { height: 100%;} /* hack for full background
+
+/***** Custom Fonts *****/
+
+@font-face {
+    font-family: "Auto1";
+    font-weight: 200;
+    src: url("../fonts/Auto1/Auto1-Light.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Auto1";
+    font-weight: 200;
+    font-style: italic;
+    src: url("../fonts/Auto1/Auto1-LightItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Auto1";
+    font-weight: 400;
+    src: url("../fonts/Auto1/Auto1-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Auto1";
+    font-weight: 400;
+    font-style: italic;
+    src: url("../fonts/Auto1/Auto1-Italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Auto1";
+    font-weight: 600;
+    src: url("../fonts/Auto1/Auto1-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Auto1";
+    font-weight: 600;
+    font-style: italic;
+    src: url("../fonts/Auto1/Auto1-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Auto1";
+    font-weight: 700;
+    src: url("../fonts/Auto1/Auto1-Black.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Auto1";
+    font-weight: 700;
+    font-style: italic;
+    src: url("../fonts/Auto1/Auto1-BlackItalic.ttf") format("truetype");
 }
 
 /***** Basic Layout *****/
 
+#window { /* full browser window */
+    min-height: 100%;
+    overflow: visible;
+    width: 100%;
+}
+
 #left {
     left: 0px;
     margin: 0;
-    padding: 0;
+    padding: 0 0 0 20px;
     position: absolute;
     top: 0;
-    width: 260px;
+    width: 240px;
 }
 
 #nav {
-    height: 440px;
+    height: 660px;
     width: 240px;
-    padding: 0px 10px 0px 10px;
-    background: url("../images/main/tag.png") no-repeat center top;
+    padding: 0px 0px 0px 0px;
+    background: url("../images/main/newtag.png") no-repeat center top;
+}
+
+#menu {
+    padding: 130px 0 0 0;
+    font-family: "Auto1";
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #copyright {
-    padding: 10px 10px 10px 10px;
+    padding: 12px 0 0 0;
+    text-align: center;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #aaaaaa;
 } 
 
+#caption {
+    /*width: 200px;*/
+    padding: 20px 0 0 0;
+    margin-left: 40px;
+    margin-right: 20px;
+    font-family: "Auto1";
+    font-weight: 400;
+    font-size: 12px;
+}
+
 #right {
-    margin: 0px 0px 0px 260px;
-    padding: 0;
+    /*margin: 0px 0px 0px 270px;*/
+    padding: 0 0 0 0;
+    left: 270px;
     top: 0px;
+    overflow: hidden;
+    position: absolute;
 }
 
-#leftarrow {
+div.leftarrow {
 }
 
-#rightarrow {
+div.rightarrow {
 }
 
-.arrow {
+div.arrow {
     float: left;
     width: 40px;
-    height: 120px;
-    background-color: #666;
+    height: 100px;
+    /*background-color: #666;*/
+    opacity: 0;
     position: relative;
     z-index: 1;
+    text-align: center;
+    display: table;
     }
+
+div.centerfloat {
+    display: table-cell;
+    vertical-align: middle;
+}
 
 #scroll {
     height: 120px;
@@ -73,7 +173,7 @@ body {
 }
 
 #gate {
-    height: 120px;
+    height: 100px;
     float: left;
     overflow: hidden;
 }
@@ -92,17 +192,31 @@ body {
     clear: both;
 }
 
+#contact {
+}
+
 #loader {
+    margin: 20px 0 0 40px;
 }
 
 .fadeMe {
 }
-    
+
+#spinner {
+    text-align: center;
+}
+
+img.spinner {
+    vertical-align: middle;
+}
+
 .loading {
-    height: 35px;
     margin: 20px;
-    width: 35px;
-    background: url("../images/main/ajax-loader.gif") no-repeat center center;
+    background: url("../images/main/ajax-loader.gif") no-repeat left center;
+}
+
+p.spinner {
+    text-indent: 20px;
 }
 
 .loaded {
@@ -110,14 +224,72 @@ body {
     padding: 6px; 
 }
 
+img.arrows {
+    height: 80px;
+    width: 30px;
+}
+
 .img-thumbs {
     vertical-align: top;
 }
+
+p.menu {
+    font-family: "Auto1";
+    font-style: italic;
+    font-size: 14px;
+    line-height: 100%;
+    text-indent: 10px;
+}
+
+p.title {
+    font-family: "Auto1";
+    font-style: italic;
+}
+
+p.menusub {
+    font-family: "Auto1";
+    font-style: italic;
+    line-height: 100%;
+    text-indent: 20px;
+    font-size: 14px;
+}
+
+p.copyright {
+    font-family: "Auto1";
+    font-weight: 400;
+    font-size: 12px;
+}
+
+p.caption {
+    font-family: "Auto1";
+    font-weight: 400;
+    font-size: 12px;
+}
+
+hr.dot {
+    border: 1px dotted;
+    width: 100%;
+}
     
-a.thumbs:link {text-decoration: none; border-bottom: none; color: #222222; }
-a.thumbs:active {text-decoration: none; border-bottom: none; color: #222222; }
-a.thumbs:visited {text-decoration: none; border-bottom: none; color: #222222; }
-a.thumbs:hover {text-decoration: none; border-bottom: none; color: #DDDDDD; }
+hr.dash {
+    border: 1px dashed;
+    width: 100%;
+}
+
+a.nav:link { text-decoration: none; border-bottom: none; color: #222222; }
+a.nav:active { text-decoration: none; border-bottom: none; color: #ff0000; }
+a.nav:visited { text-decoration: none; border-bottom: none; color: #222222; }
+a.nav:hover { text-decoration: none; border-bottom: none; color: #555555; }
+
+a.caption:link { border-bottom: none; color: #55aaff; }
+a.caption:active { border-bottom: none; color: #ff0000; }
+a.caption:visited { border-bottom: none; color: #222222; }
+a.caption:hover { border-bottom: none; color: #555555; }
+    
+a.thumbs:link { text-decoration: none; border-bottom: none; color: #222222; }
+a.thumbs:active { text-decoration: none; border-bottom: none; color: #222222; }
+a.thumbs:visited { text-decoration: none; border-bottom: none; color: #222222; }
+a.thumbs:hover { text-decoration: none; border-bottom: none; color: #DDDDDD; }
 
 .hidden { display: none; }
 .visible { display: inline-block;}
