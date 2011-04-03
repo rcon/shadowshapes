@@ -8,147 +8,163 @@ coded by Roderick Constance, 2011
 <HTML>
 <HEAD>
 <TITLE>shadowshapes: Roderick Constance</TITLE>
-<LINK rel="stylesheet" type="text/css" href="css/main2.css" media="screen" />
+<LINK rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
+<LINK rel="Shortcut Icon" href="favicon.ico">
 <SCRIPT type="text/javascript" src="js/jquery-1.4.2.min.js"></SCRIPT>
 <SCRIPT type="text/javascript" src="js/jquery.ba-hashchange-1.1.min.js"></SCRIPT> 
 <SCRIPT type="text/javascript">
 
 /* TODO 
-about, contact
-nav design
-font
-*arrow click
-gzip
-*button mashing
-
+arrow click
+gzip font
 iphone,ipad?
-cache font in the future
 check image load error
 bug complete
+button mashing
 */
 
 function showContent(nav) {
-    getImages = "getImages.php?id=" + nav;
-    $.getJSON(getImages, function(json) {
-        var max = json.length;
-        if (max > 0)
+    link = ('#' + nav);
+    $('#menu a').removeClass("highlight").addClass("nav");
+    $('a[href=' + link + ']').removeClass("nav").addClass("highlight");
+    if ((nav == "about") || (nav == "contact")) 
+    {
+        $('#info').empty();
+        switch(nav) 
         {
-            loadImage(0, max);
-        }      
-        var new_width = 0;
-        var ballpark = 600;
-        var scroll_step = 400;
-        var navhash = "#" + nav;
-        $('#thumbs').empty().css('left', '0px').show();
-        $('#scroll').width(800);
-        var overflow = new Boolean(false);
-        var gate_resize = new Boolean(false);
-        var arrow_opacity = 0.5;
-
-        function setScrollControl(scroll_step) {
-//            var left_opacity = $('#leftarrow').css('opacity');
-//            var right_opacity = $('#rightarrow').css('opacity');
-//            $('#leftarrow').mousedown(function () {
-//                $(this).css({'opacity': '0.75'});
-//            }).mouseup(function () {
-//                $(this).css({ 'opacity': left_opacity });
-//            });
-//            $('#rightarrow').mousedown(function () {
-//                $(this).css({'opacity': '0.75'});
-//            }).mouseup(function () {
-//                $(this).css({ 'opacity': right_opacity });
-//            });
-
-            $('#leftarrow').click(function() {
-                thumbs_left = $('#thumbs').offset().left;
-                gate_left = $('#gate').offset().left;
-                gap_left = gate_left - thumbs_left;
-                if (thumbs_left < gate_left) {
-                    if (gap_left >= scroll_step) {
-                        $('#thumbs').animate({'left': '+=' + scroll_step + 'px'}, 200);
-                        if (gap_left == scroll_step) {
-                            $('#leftarrow').css({'opacity': arrow_opacity });
-                        }                      
-                    } else {
-                        $('#thumbs').animate({'left': '+=' + gap_left + 'px'}, 200, function() {
-                            $('#leftarrow').css({'opacity': arrow_opacity });
-                        });
-                    }
-                    $('#rightarrow').css({'opacity': '1.0'});
-                }
-            });
-            $('#rightarrow').click(function() {
-                thumbs_right = $('#thumbs').offset().left + $('#thumbs').width();
-                gate_right = $('#gate').offset().left + $('#gate').width();
-                gap_right = thumbs_right - gate_right;
-                if (thumbs_right > gate_right) {
-                    if (gap_right >= scroll_step) {
-                        $('#thumbs').animate({'left': '-=' + scroll_step + 'px'}, 200);
-                        if (gap_right == scroll_step) {
-                            $('#rightarrow').css({'opacity': arrow_opacity });
-                        }
-                    } else {
-                        $('#thumbs').animate({'left': '-=' + gap_right + 'px'}, 200, function() {
-                            $('#rightarrow').css({'opacity': arrow_opacity });
-                        });
-                    }
-                    $('#leftarrow').css({'opacity': '1.0'});                  
-                }
-            });
+            case "about":
+                $('#info').html($('#hidden-about').html());
+                break;
+            case "contact":
+                $('#info').html($('#hidden-contact').html());
+                break;
         }
-
-        function loadImage(index, max) {
-            if ((location.hash).substring(1) == nav)
+        $('#info').fadeIn(300);
+    } 
+    else 
+    {
+        getImages = "getImages.php?id=" + nav;
+        $.getJSON(getImages, function(json) {
+            var max = json.length;
+            if (max > 0)
             {
-                if (index < max)
-                {
-                    var newimg = new Image();
-                    $(newimg).load(function () {
-                        if ((location.hash).substring(1) == nav)
-                        {
-                            
-                            $('#thumbs').append(this);
-                            $(this).hide();
-                            $(this).removeClass().addClass("img-thumbs");
-                            $(this).wrap('<A class="thumbs" href="' + navhash + '">');
-                            if (max - index > 1) 
-                            {
-                                $(this).css('margin-right', '10px');
-                            }
-                            
-                            if ($('#thumbs').width() < ballpark)        
-                            {
-                                new_width += $(this).outerWidth(true);  
-                                $('#gate').width(new_width);          
-                            }
-                            else { 
-                                overflow = true;
-                                if (gate_resize == false) {
-                                    $('#gate').width($('#gate').width() - 10);
-                                    gate_resize = true;
-                                }
-                                $('#rightarrow').animate({'opacity': '1.0'}, 100);
-                                $('#leftarrow').animate({'opacity': arrow_opacity}, 100);
-                            }
-                            
-                            $(this).fadeIn(100, function() {
-                                if (max - index == 1)
-                                {
-                                    var w = $('#gate').outerWidth(true) + ($('#leftarrow').outerWidth(true) * 2);
-                                    $('#scroll').width(w);
-                                    if (overflow == true) 
-                                    {
-                                        setScrollControl(scroll_step);
-                                    }
-                                }
-                                else loadImage(index + 1, max);
+                loadImage(0, max);
+            }      
+            var new_width = 0;
+            var ballpark = 600;
+            var scroll_step = 400;
+            var navhash = "#" + nav;
+            $('#thumbs').empty().css('left', '0px').show();
+            $('#scroll').width(800);
+            var overflow = new Boolean(false);
+            var gate_resize = new Boolean(false);
+            var arrow_opacity = 0.5;
+    
+            function setScrollControl(scroll_step) {
+    //            var left_opacity = $('#leftarrow').css('opacity');
+    //            var right_opacity = $('#rightarrow').css('opacity');
+    //            $('#leftarrow').mousedown(function () {
+    //                $(this).css({'opacity': '0.75'});
+    //            }).mouseup(function () {
+    //                $(this).css({ 'opacity': left_opacity });
+    //            });
+    //            $('#rightarrow').mousedown(function () {
+    //                $(this).css({'opacity': '0.75'});
+    //            }).mouseup(function () {
+    //                $(this).css({ 'opacity': right_opacity });
+    //            });
+    
+                $('#leftarrow').click(function() {
+                    thumbs_left = $('#thumbs').offset().left;
+                    gate_left = $('#gate').offset().left;
+                    gap_left = gate_left - thumbs_left;
+                    if (thumbs_left < gate_left) {
+                        if (gap_left >= scroll_step) {
+                            $('#thumbs').animate({'left': '+=' + scroll_step + 'px'}, 200);
+                            if (gap_left == scroll_step) {
+                                $('#leftarrow').css({'opacity': arrow_opacity });
+                            }                      
+                        } else {
+                            $('#thumbs').animate({'left': '+=' + gap_left + 'px'}, 200, function() {
+                                $('#leftarrow').css({'opacity': arrow_opacity });
                             });
                         }
-                    }).attr('src', json[index]);
-                }
+                        $('#rightarrow').css({'opacity': '1.0'});
+                    }
+                });
+                $('#rightarrow').click(function() {
+                    thumbs_right = $('#thumbs').offset().left + $('#thumbs').width();
+                    gate_right = $('#gate').offset().left + $('#gate').width();
+                    gap_right = thumbs_right - gate_right;
+                    if (thumbs_right > gate_right) {
+                        if (gap_right >= scroll_step) {
+                            $('#thumbs').animate({'left': '-=' + scroll_step + 'px'}, 200);
+                            if (gap_right == scroll_step) {
+                                $('#rightarrow').css({'opacity': arrow_opacity });
+                            }
+                        } else {
+                            $('#thumbs').animate({'left': '-=' + gap_right + 'px'}, 200, function() {
+                                $('#rightarrow').css({'opacity': arrow_opacity });
+                            });
+                        }
+                        $('#leftarrow').css({'opacity': '1.0'});                  
+                    }
+                });
             }
-        };
-    });
+    
+            function loadImage(index, max) {
+                if ((location.hash).substring(1) == nav)
+                {
+                    if (index < max)
+                    {
+                        var newimg = new Image();
+                        $(newimg).load(function () {
+                            if ((location.hash).substring(1) == nav)
+                            {
+                                
+                                $('#thumbs').append(this);
+                                $(this).hide();
+                                $(this).removeClass().addClass("img-thumbs");
+                                $(this).wrap('<A class="thumbs" href="' + navhash + '">');
+                                if (max - index > 1) 
+                                {
+                                    $(this).css('margin-right', '10px');
+                                }
+                                
+                                if ($('#thumbs').width() < ballpark)        
+                                {
+                                    new_width += $(this).outerWidth(true);  
+                                    $('#gate').width(new_width);          
+                                }
+                                else { 
+                                    overflow = true;
+                                    if (gate_resize == false) {
+                                        $('#gate').width($('#gate').width() - 10);
+                                        gate_resize = true;
+                                    }
+                                    $('#rightarrow').animate({'opacity': '1.0'}, 100);
+                                    $('#leftarrow').animate({'opacity': arrow_opacity}, 100);
+                                }
+                                
+                                $(this).fadeIn(100, function() {
+                                    if (max - index == 1)
+                                    {
+                                        var w = $('#gate').outerWidth(true) + ($('#leftarrow').outerWidth(true) * 2);
+                                        $('#scroll').width(w);
+                                        if (overflow == true) 
+                                        {
+                                            setScrollControl(scroll_step);
+                                        }
+                                    }
+                                    else loadImage(index + 1, max);
+                                });
+                            }
+                        }).attr('src', json[index]);
+                    }
+                }
+            };
+        });
+    }
 }
 
 $(document).ready(function() {
@@ -164,7 +180,7 @@ $(document).ready(function() {
             $('#caption').fadeIn(300, function() {
                 $(_img).one("load", function() {
                     $('#caption').fadeOut(300, function () {
-                        url = '<A class="caption" href=http://shadowshapes.com/dev/' + url + '>Image Link</A>';
+                        url = '<A class="caption" target="_blank" href=http://shadowshapes.com/dev/' + url + '>Image Link</A>';
                         $(this).html($('#' + shortcut).html());
                         $(this).append(url);
                         $('#loader').fadeOut(300, function() {
@@ -179,7 +195,7 @@ $(document).ready(function() {
         });
     });
         
-    jQuery.hashchangeDelay = 100; // in milliseconds
+    jQuery.hashchangeDelay = 50; // in milliseconds
 
     $(function() { 
         $(window).bind('hashchange', function() {
@@ -199,10 +215,24 @@ $(document).ready(function() {
         });
     })
 
-    if (location.hash != '')
+    if (location.hash != '')   
     {
         $(window).trigger('hashchange');
     }
+    /* else {
+        $(function() {
+            var elements = $('.fadeMe').length;
+            $('.arrow').unbind("click").animate({'opacity': '0'}, 200);
+            $('.fadeMe').fadeOut(200, function() {
+                elements--;
+                if (!elements)
+                {
+                    $('#info').html($('#hidden-welcome').html());
+                    $('#info').fadeIn(300);
+                }
+            });
+        });
+    }*/
 });
 
 
@@ -212,28 +242,29 @@ $(document).ready(function() {
 <DIV id="window">
     <DIV id="left">
         <DIV id="nav">
+            <DIV id="header"><A class="invis" href="http://shadowshapes.com/dev">Roderick Constance</A></DIV>
             <DIV id="menu">
                     <HR class="dash">
-                    <P class="menu">ILLUSTRATION<BR />
-                    <P class="menusub"><A href="#2011" class="nav">2011</A></P>
-                    <P class="menusub"><A href="#2010" class="nav">2010</A></P>
+                    <P class="menu">ILLUSTRATION</P>
+                    <A href="#2011" class="nav"><P class="menusub">2011</P></A>
+                    <P class="menusub">2008-2010 <SPAN class="soon">(coming soon)</SPAN></P>
                     <HR class="dash">
-                    <P class="menu"><A href="#sketches" class="nav">SKETCHBOOK</A></P>
+                    <A href="#sketchbook" class="nav"><P class="menu">SKETCHBOOK</P></A>
                     <HR class="dash">
-                    <P class="menu">BLOG (coming soon)</P>
+                    <P class="menu">BLOG <SPAN class="soon">(coming soon)</SPAN></P>
                     <HR class="dash">
-                    <P class="menu"><A href="#about" class="nav">ABOUT</A></P>
+                    <A href="#about" class="nav"><P class="menu">ABOUT</P></A>
                     <HR class="dash">
-                    <P class="menu"><A href="#contact" class="nav">CONTACT</A></P>
-                    </P>
+                    <A href="#contact" class="nav"><P class="menu">CONTACT</P></A>
             </DIV>
             <DIV id="caption" class="fadeMe"></DIV>
         </DIV>
         <DIV id="copyright">
-                <P class="copyright">&copy 2011 RODERICK CONSTANCE</P>
+                <P class="copyright">&copy <SPAN class="copyrightdate">2011</SPAN> RODERICK CONSTANCE</P>
         </DIV>
     </DIV>
     <DIV id="right">
+        <DIV id="info" class="fadeMe"></DIV>
         <DIV id="scroll">
             <DIV id="leftarrow" class="arrow">
                 <DIV class="centerfloat">
@@ -258,24 +289,38 @@ $(document).ready(function() {
 <DIV id="spinner" class="hidden"><IMG class="spinner" src="images/main/ajax-loader.gif"></DIV>
 
 <DIV id="hidden-contact" class="hidden">
-    <DIV class="contact">
-        415.236.3736<BR />
-        <A class="about" href="mailto:rcon@shadowshapes.com">rcon@shadowshapes.com</A><BR />
-        <A class="about" href="http://shadowshapes.com/sketchblog">sketchblog</A><BR />
+    <DIV id="contact">
+        <P class="phone">415.236.3736</P><BR />
+        <A class="info" href="mailto:rcon@shadowshapes.com">rcon@shadowshapes.com</A><BR />
         skype: rcon.shadowshapes<BR />
-    </DIV>
-    <DIV class="iconrow">
-        <A class="about" href="http://www.behance.net/shadowshapes"><IMG class="about" src="images/main/icon-behance.png"></A>
-        <A class="about" href="http://www.flickr.com/photos/61171258@N07/"><IMG class="about" src="images/main/icon-flickr.png"></A>
-        <A class="about" href="http://shadowshapes.tumblr.com"><IMG class="about" src="images/main/icon-tumblr.png"></A>
-        <A class="about" href="http://twitter.com/shadowshapes"><IMG class="about" src="images/main/icon-twitter.png"></A>
-        <A class="about" href="http://www.facebook.com/profile.php?id=100002281453190"><IMG class="about" src="images/main/icon-facebook.png"></A>
+        <DIV id="iconrow">
+            <A class="info" target="_blank" href="http://roderickconstance.deviantart.com/"><IMG class="contact" src="images/main/icon-deviantart.png"></A>
+            <A class="info" target="_blank" href="http://www.behance.net/shadowshapes"><IMG class="contact" src="images/main/icon-behance.png"></A>
+            <A class="info" target="_blank" href="http://www.flickr.com/photos/61171258@N07/"><IMG class="contact" src="images/main/icon-flickr.png"></A>
+            <A class="info" target="_blank" href="http://shadowshapes.tumblr.com"><IMG class="contact" src="images/main/icon-tumblr.png"></A>
+            <A class="info" target="_blank" href="http://twitter.com/shadowshapes"><IMG class="contact" src="images/main/icon-twitter.png"></A>
+            <A class="info" target="_blank" href="http://www.last.fm/user/fullbleedboy"><IMG class="contact" src="images/main/icon-lastfm.png"></A>
+            <A class="info" target="_blank" href="http://www.facebook.com/profile.php?id=100002281453190"><IMG class="contact" src="images/main/icon-facebook.png"></A>
+        </DIV>    
     </DIV>
 </DIV>
 
-<DIV id="hidden-about" class="hidden">:9</DIV>
+<DIV id="hidden-about" class="hidden">
+    <DIV id="about">
+        <DIV id="about-text">
+        Roderick Constance is an illustrator and concept artist based in San Francisco, California. He holds a Bachelor of Fine Arts in Traditional Illustration from The Academy of Art University.
+        </DIV>
+        <DIV id="about-img">
+            <IMG align="left" src="images/main/roderickconstance-exclamation_question.jpg" />
+        </DIV>
+    </DIV>
+</DIV>
 
-<DIV id='_20110316-02' class="hidden"><P class="title">Bouncing Dragon</P>Shadowshapes Comics<BR /></DIV>
-
+<DIV id="hidden-welcome" class="hidden fadeMe">
+    <DIV id="welcome"><P class="welcome">WELCOME!</P></DIV>
+</DIV>
+<!--
+<DIV id='_RoderickConstance-illo-007-janeinflames' class="hidden"><P class="title">Bouncing Dragon</P>Shadowshapes<BR /></DIV>
+-->
 </BODY>
 </HTML>

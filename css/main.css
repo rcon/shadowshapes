@@ -20,66 +20,116 @@ body {
     background-image: url("../images/main/crosshatch.gif");
     background-color: #222222;
     color: #222222;
-    /*font-family: 'Auto1', 'Lucida Sans', 'Optima', 'Georgia', 'Arial', sans-serif; */
+    /*font-family: 'Calluna', 'Lucida Sans', 'Optima', 'Georgia', 'Arial', sans-serif; */
     font-size: 0.80em;  /* 1em = 16pt. */
-    /*font-weight: 400;  /* see font-face */
 }
 
 html, body { height: 100%;} /* hack for full background
 
 /***** Custom Fonts *****/
 
-@font-face {
-    font-family: "Auto1";
-    font-weight: 200;
-    src: url("../fonts/Auto1/Auto1-Light.ttf") format("truetype");
-}
+/* Calluna */
 
 @font-face {
-    font-family: "Auto1";
-    font-weight: 200;
-    font-style: italic;
-    src: url("../fonts/Auto1/Auto1-LightItalic.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "Auto1";
+    font-family: "Hortensia";
     font-weight: 400;
-    src: url("../fonts/Auto1/Auto1-Regular.ttf") format("truetype");
+    src: url("../fonts/Hortensia/Hortensia.otf") format("opentype");
 }
 
 @font-face {
-    font-family: "Auto1";
+    font-family: "Calluna";
+    font-weight: 300;
+    src: url("../fonts/Calluna/Calluna-Light.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Calluna";
+    font-weight: 400;
+    src: url("../fonts/Calluna/Calluna-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Calluna";
     font-weight: 400;
     font-style: italic;
-    src: url("../fonts/Auto1/Auto1-Italic.ttf") format("truetype");
+    src: url("../fonts/Calluna/Calluna-It.otf") format("opentype");
 }
 
 @font-face {
-    font-family: "Auto1";
+    font-family: "Calluna";
+    font-weight: 500;
+    src: url("../fonts/Calluna/Calluna-Semibold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Calluna";
+    font-weight: 500;
+    font-style: italic;
+    src: url("../fonts/Calluna/Calluna-SemiboldIt.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Calluna";
     font-weight: 600;
-    src: url("../fonts/Auto1/Auto1-Bold.ttf") format("truetype");
+    src: url("../fonts/Calluna/Calluna-Bold.otf") format("opentype");
 }
 
 @font-face {
-    font-family: "Auto1";
+    font-family: "Calluna";
     font-weight: 600;
     font-style: italic;
-    src: url("../fonts/Auto1/Auto1-BoldItalic.ttf") format("truetype");
+    src: url("../fonts/Calluna/Calluna-BoldIt.otf") format("opentype");
 }
 
 @font-face {
-    font-family: "Auto1";
+    font-family: "Calluna";
     font-weight: 700;
-    src: url("../fonts/Auto1/Auto1-Black.ttf") format("truetype");
+    src: url("../fonts/Calluna/Calluna-Black.otf") format("opentype");
+}
+
+
+/* Oxtail */
+
+/*
+@font-face {
+    font-family: "Oxtail";
+    font-weight: 400;
+    src: url("../fonts/Oxtail/Oxtail.otf") format("opentype");
 }
 
 @font-face {
-    font-family: "Auto1";
+    font-family: "Oxtail";
+    font-weight: 400;
+    font-style: italic;
+    src: url("../fonts/Oxtail/Oxtail-Italic.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Oxtail";
+    font-weight: 600;
+    src: url("../fonts/Oxtail/Oxtail-Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Oxtail";
+    font-weight: 600;
+    font-style: italic;
+    src: url("../fonts/Oxtail/Oxtail-BoldItalic.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Oxtail";
+    font-weight: 700;
+    src: url("../fonts/Oxtail/Oxtail-Black.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Oxtail";
     font-weight: 700;
     font-style: italic;
-    src: url("../fonts/Auto1/Auto1-BlackItalic.ttf") format("truetype");
+    src: url("../fonts/Oxtail/Oxtail-BlackItalic.otf") format("opentype");
 }
+*/
 
 /***** Basic Layout *****/
 
@@ -99,18 +149,35 @@ html, body { height: 100%;} /* hack for full background
 }
 
 #nav {
-    height: 660px;
+    height: 620px;
     width: 240px;
     padding: 0px 0px 0px 0px;
-    background: url("../images/main/newtag.png") no-repeat center top;
+    background: url("../images/main/oldcrow.png") no-repeat center top;
+}
+
+#header {
+    padding: 20px 0 0 0;
+    font-family: "Hortensia";
+    text-align: center;
+    font-size: 28px;
+    color: #e0d8c8;
 }
 
 #menu {
-    padding: 130px 0 0 0;
-    font-family: "Auto1";
+    padding: 50px 0 0 0;
+    font-family: "Calluna"; /* active */
     width: 200px;
     margin-left: auto;
     margin-right: auto;
+}
+
+#caption {
+    padding: 20px 0 0 0;
+    margin-left: 40px;
+    margin-right: 20px;
+    font-family: "Calluna"; /* active */
+    font-weight: 400;
+    font-size: 12px;
 }
 
 #copyright {
@@ -119,21 +186,10 @@ html, body { height: 100%;} /* hack for full background
     width: 200px;
     margin-left: auto;
     margin-right: auto;
-    color: #aaaaaa;
+    color: #e0d8c8;
 } 
 
-#caption {
-    /*width: 200px;*/
-    padding: 20px 0 0 0;
-    margin-left: 40px;
-    margin-right: 20px;
-    font-family: "Auto1";
-    font-weight: 400;
-    font-size: 12px;
-}
-
 #right {
-    /*margin: 0px 0px 0px 270px;*/
     padding: 0 0 0 0;
     left: 270px;
     top: 0px;
@@ -141,17 +197,74 @@ html, body { height: 100%;} /* hack for full background
     position: absolute;
 }
 
-div.leftarrow {
+#info {
 }
 
-div.rightarrow {
+#welcome {
+    font-family: "Calluna"; /* active */
+    font-weight: 700;
+    font-size: 40px;
+    padding: 10px 0 0 0px;
+    margin: 0 0 0 40px;
+
+}
+
+#contact {
+    background-color: #e0d8c8;
+    padding: 10px 0 0 20px;
+    margin: 0 0 0 40px;
+    width: 400px;
+    height: 200px;
+    font-family: "Calluna"; /* active */
+    font-weight: 400;
+    font-size: 14px;
+}
+
+#about {
+    background-color: #e0d8c8;
+    padding: 10px 0 0 20px;
+    margin: 0 0 0 40px;
+    width: 400px;
+    height: 200px;
+    font-family: "Calluna"; /* active */
+    font-weight: 400;
+    font-size: 14px;
+    display: table;
+}
+
+#about-text {
+    display: table-cell;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 10px 10px 10px;
+    vertical-align: top;
+}
+
+#about-img {
+    display: table-cell;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 10px 10px 10px;
+    vertical-align: top;
+}
+
+#iconrow {
+    padding: 20px 0 0 0;
+}
+
+#scroll {
+    height: 120px;
+    left: 0px;
+    position: relative;
+    /*width: 800px;*/
+    overflow: visible;
+    padding: 10px 0 0 0;
 }
 
 div.arrow {
     float: left;
     width: 40px;
     height: 100px;
-    /*background-color: #666;*/
     opacity: 0;
     position: relative;
     z-index: 1;
@@ -164,16 +277,8 @@ div.centerfloat {
     vertical-align: middle;
 }
 
-#scroll {
-    height: 120px;
-    left: 0px;
-    position: relative;
-    /*width: 800px;*/
-    overflow: visible;
-}
-
 #gate {
-    height: 100px;
+    height: 110px;
     float: left;
     overflow: hidden;
 }
@@ -192,78 +297,33 @@ div.centerfloat {
     clear: both;
 }
 
-#contact {
-}
+/*=====*/
 
-#loader {
-    margin: 20px 0 0 40px;
-}
+/* left */
 
-.fadeMe {
-}
+a.nav:link { text-decoration: none; border-bottom: none; color: #222222; }
+a.nav:active { text-decoration: none; border-bottom: none; color: #ff0000; }
+a.nav:visited { text-decoration: none; border-bottom: none; color: #222222; }
+a.nav:hover { text-decoration: none; border-bottom: none; color: #ebb45c; }
 
-#spinner {
-    text-align: center;
-}
+a.caption:link { border-bottom: none; color: #ed5c5c; }
+a.caption:active { border-bottom: none; color: #ff0000; }
+a.caption:visited { border-bottom: none; color: #222222; }
+a.caption:hover { border-bottom: none; color: #555555; }
 
-img.spinner {
-    vertical-align: middle;
-}
+a.highlight:link { color: #b14a4a; }
+a.highlight:active { color: #b14a4a; }
+a.highlight:visited { color: #b14a4a; }
+a.highlight:hover { color: #b14a4a; }
 
-.loading {
-    margin: 20px;
-    background: url("../images/main/ajax-loader.gif") no-repeat left center;
-}
+a.invis:link { text-decoration: none; color: #e0d8c8; }
+a.invis:active { text-decoration: none; color: #e0d8c8; }
+a.invis:visited { text-decoration: none; color: #e0d8c8; }
+a.invis:hover { text-decoration: none; color: #e0d8c8; }
 
-p.spinner {
-    text-indent: 20px;
-}
 
-.loaded {
-    background-color: #DDDDDD;
-    padding: 6px; 
-}
-
-img.arrows {
-    height: 80px;
-    width: 30px;
-}
-
-.img-thumbs {
-    vertical-align: top;
-}
-
-p.menu {
-    font-family: "Auto1";
-    font-style: italic;
-    font-size: 14px;
-    line-height: 100%;
-    text-indent: 10px;
-}
-
-p.title {
-    font-family: "Auto1";
-    font-style: italic;
-}
-
-p.menusub {
-    font-family: "Auto1";
-    font-style: italic;
-    line-height: 100%;
-    text-indent: 20px;
-    font-size: 14px;
-}
-
-p.copyright {
-    font-family: "Auto1";
-    font-weight: 400;
-    font-size: 12px;
-}
-
-p.caption {
-    font-family: "Auto1";
-    font-weight: 400;
-    font-size: 12px;
+img.contact {
+    border: none;
 }
 
 hr.dot {
@@ -276,20 +336,102 @@ hr.dash {
     width: 100%;
 }
 
-a.nav:link { text-decoration: none; border-bottom: none; color: #222222; }
-a.nav:active { text-decoration: none; border-bottom: none; color: #ff0000; }
-a.nav:visited { text-decoration: none; border-bottom: none; color: #222222; }
-a.nav:hover { text-decoration: none; border-bottom: none; color: #555555; }
+p.welcome {
+    color: #e2ddd2;
+}
 
-a.caption:link { border-bottom: none; color: #55aaff; }
-a.caption:active { border-bottom: none; color: #ff0000; }
-a.caption:visited { border-bottom: none; color: #222222; }
-a.caption:hover { border-bottom: none; color: #555555; }
-    
-a.thumbs:link { text-decoration: none; border-bottom: none; color: #222222; }
-a.thumbs:active { text-decoration: none; border-bottom: none; color: #222222; }
-a.thumbs:visited { text-decoration: none; border-bottom: none; color: #222222; }
-a.thumbs:hover { text-decoration: none; border-bottom: none; color: #DDDDDD; }
+p.menu {
+    font-family: "Calluna"; /* active */
+    font-style: italic;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 100%;
+    text-indent: 10px;
+}
+
+p.menusub {
+    font-family: "Calluna"; /* active */
+    font-style: italic;
+    line-height: 100%;
+    text-indent: 20px;
+    font-size: 14px;
+}
+
+span.soon {
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 300;
+}
+
+p.title { /* caption title */
+    font-family: "Calluna"; /* active */
+    font-style: italic;
+}
+
+p.caption {
+    font-family: "Calluna"; /* active */ 
+    font-weight: 400;
+    font-size: 12px;
+}
+
+#spinner {
+    text-align: center;
+}
+
+img.spinner {
+    vertical-align: middle;
+}
+
+p.copyright {
+    font-family: "Calluna"; /* active */
+    font-weight: 400;
+    font-size: 12px;
+}
+
+span.copyrightdate {
+    font-size: 16px;
+}
+
+/* right */
+
+a.thumbs:link { text-decoration: none; color: #222222; }
+a.thumbs:active { text-decoration: none; color: #222222; }
+a.thumbs:visited { text-decoration: none; color: #222222; }
+a.thumbs:hover { text-decoration: none; color: #DDDDDD; }
+
+a.info:link { text-decoration: none; color: #222222; }
+a.info:active { text-decoration: none; color: #ff0000; }
+a.info:visited { text-decoration: none; color: #222222; }
+a.info:hover { text-decoration: none; color: #555555; }
+
+img.arrows {
+    height: 80px;
+    width: 30px;
+}
+
+p.phone {
+    font-family: "Calluna"; /* active */
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.img-thumbs {
+    vertical-align: top;
+}
+
+#loader {
+    margin: 10px 0 0 40px;
+}
+
+.loaded {
+    background-color: #DDDDDD;
+    padding: 6px; 
+}
+
+.fadeMe {
+}
+
+/* general */
 
 .hidden { display: none; }
 .visible { display: inline-block;}
