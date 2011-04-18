@@ -33,58 +33,67 @@ html, body { height: 100%;} /* hack for full background
 @font-face {
     font-family: "Hortensia";
     font-weight: 400;
-    src: url("../fonts/Hortensia/Hortensia.otf") format("opentype");
+    src: url(../fonts/Hortensia/Hortensia.eot);
+    src: local('☺'), url("../fonts/Hortensia/Hortensia.otf") format("opentype");
 }
 
 @font-face {
     font-family: "Calluna";
     font-weight: 300;
-    src: url("../fonts/Calluna/Calluna-Light.otf") format("opentype");
+    src: url(../fonts/Calluna/Calluna-Light.eot);
+    src: local('☺'), url("../fonts/Calluna/Calluna-Light.otf") format("opentype");
 }
 
 @font-face {
     font-family: "Calluna";
     font-weight: 400;
-    src: url("../fonts/Calluna/Calluna-Regular.otf") format("opentype");
+    src: url(../fonts/Calluna/Calluna-Regular.eot); 
+    src: local('☺'), url("../fonts/Calluna/Calluna-Regular.otf") format("opentype");
 }
 
 @font-face {
     font-family: "Calluna";
     font-weight: 400;
     font-style: italic;
-    src: url("../fonts/Calluna/Calluna-It.otf") format("opentype");
+    src: url(../fonts/Calluna/Calluna-It.eot);
+    src: local('☺'), url("../fonts/Calluna/Calluna-It.otf") format("opentype");
 }
 
 @font-face {
     font-family: "Calluna";
     font-weight: 500;
-    src: url("../fonts/Calluna/Calluna-Semibold.otf") format("opentype");
+    src: url(../fonts/Calluna/Calluna-Semibold.eot);
+    src: local('☺'), url("../fonts/Calluna/Calluna-Semibold.otf") format("opentype");
 }
 
 @font-face {
     font-family: "Calluna";
     font-weight: 500;
     font-style: italic;
-    src: url("../fonts/Calluna/Calluna-SemiboldIt.otf") format("opentype");
+    src: url(../fonts/Calluna/Calluna-SemiboldIt.eot);
+    src: local('☺'), url("../fonts/Calluna/Calluna-SemiboldIt.otf") format("opentype");
 }
 
 @font-face {
     font-family: "Calluna";
     font-weight: 600;
-    src: url("../fonts/Calluna/Calluna-Bold.otf") format("opentype");
+    src: url(../fonts/Calluna/Calluna-Bold.eot);
+    src: local('☺'), url("../fonts/Calluna/Calluna-Bold.otf") format("opentype");
 }
 
 @font-face {
     font-family: "Calluna";
     font-weight: 600;
     font-style: italic;
-    src: url("../fonts/Calluna/Calluna-BoldIt.otf") format("opentype");
+    src: url(../fonts/Calluna/Calluna-BoldIt.eot);
+    src: local('☺'), url("../fonts/Calluna/Calluna-BoldIt.otf") format("opentype");
 }
 
 @font-face {
     font-family: "Calluna";
     font-weight: 700;
-    src: url("../fonts/Calluna/Calluna-Black.otf") format("opentype");
+    src: url(../fonts/Calluna/Calluna-Black.eot);
+    src: local('☺'), url("../fonts/Calluna/Calluna-Black.otf") format("opentype");
 }
 
 
@@ -261,18 +270,17 @@ html, body { height: 100%;} /* hack for full background
     padding: 10px 0 0 0;
 }
 
-div.arrow {
+div.centerfloat {
     float: left;
     width: 40px;
     height: 100px;
-    opacity: 0;
     position: relative;
     z-index: 1;
     text-align: center;
     display: table;
-    }
+}
 
-div.centerfloat {
+div.arrow {
     display: table-cell;
     vertical-align: middle;
 }
@@ -352,6 +360,7 @@ p.menu {
 p.menusub {
     font-family: "Calluna"; /* active */
     font-style: italic;
+    font-weight: 400;
     line-height: 100%;
     text-indent: 20px;
     font-size: 14px;
@@ -394,10 +403,10 @@ span.copyrightdate {
 
 /* right */
 
-a.thumbs:link { text-decoration: none; color: #222222; }
-a.thumbs:active { text-decoration: none; color: #222222; }
-a.thumbs:visited { text-decoration: none; color: #222222; }
-a.thumbs:hover { text-decoration: none; color: #DDDDDD; }
+a.thumbs:link { color: #222222; }
+a.thumbs:active { color: #222222; }
+a.thumbs:visited { color: #222222; }
+a.thumbs:hover { color: #DDDDDD; }
 
 a.info:link { text-decoration: none; color: #222222; }
 a.info:active { text-decoration: none; color: #ff0000; }
@@ -407,6 +416,8 @@ a.info:hover { text-decoration: none; color: #555555; }
 img.arrows {
     height: 80px;
     width: 30px;
+    opacity: 0;
+    filter: alpha(opacity=0); /* stupid IE */
 }
 
 p.phone {

@@ -1,0 +1,21 @@
+# BEGIN Compression and Caching Script per http://wordpresspartner.com
+# This calls the ‘compress-css.php’ and ‘compress-js.php’ files
+<ifModule mod_rewrite.c>
+RewriteEngine on
+RewriteRule ^(.*\.(css))$ compress-css.php?file=$1
+RewriteRule ^(.*\.(js))$ compress-js.php?file=$1
+RewriteRule ^(.*\.(otf))$ compress-otf.php?file=$1
+</ifModule>
+# This enables caching
+<ifModule mod_headers.c>
+<filesMatch "\\.(ico|pdf|flv|jpg|jpeg|png|gif|swf|otf|eot)$">
+Header set Cache-Control "max-age=2592000, public"
+</filesMatch>
+<filesMatch "\\.(xml|txt)$">
+Header set Cache-Control "max-age=216000, public, must-revalidate"
+</filesMatch>
+<filesMatch "\\.(html|htm|php)$">
+Header set Cache-Control "max-age=1, private, must-revalidate"
+</filesMatch>
+</ifModule>
+# End Compression Script

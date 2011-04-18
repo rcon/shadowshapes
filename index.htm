@@ -15,13 +15,51 @@ coded by Roderick Constance, 2011
 <SCRIPT type="text/javascript">
 
 /* TODO 
-arrow click
-gzip font
 iphone,ipad?
 check image load error
-bug complete
+bug complete?
 button mashing
 */
+
+(function($) {
+    var cache = [];
+    // Arguments are image paths relative to the current page.
+    $.preLoadImages = function() {
+        var args_len = arguments.length;
+        for (var i = args_len; i--;) {
+            var cacheImage = document.createElement('img');
+            cacheImage.src = arguments[i];
+            cache.push(cacheImage);
+        }
+    }
+})(jQuery)
+
+//jQuery.fn.fadeIn = function(speed, callback) { 
+//    return this.animate({opacity: 'show'}, speed, function() { 
+//        if (jQuery.browser.msie)  
+//            this.style.removeAttribute('filter');  
+//        if (jQuery.isFunction(callback)) 
+//            callback();  
+//    }); 
+//}; 
+// 
+//jQuery.fn.fadeOut = function(speed, callback) { 
+//    return this.animate({opacity: 'hide'}, speed, function() { 
+//        if (jQuery.browser.msie)  
+//            this.style.removeAttribute('filter');  
+//        if (jQuery.isFunction(callback)) 
+//            callback();  
+//    }); 
+//}; 
+//
+//jQuery.fn.fadeTo = function(speed,to,callback) { 
+//    return this.animate({opacity: to}, speed, function() { 
+//        if (to == 1 && jQuery.browser.msie)  
+//            this.style.removeAttribute('filter');  
+//        if (jQuery.isFunction(callback)) 
+//            callback();  
+//    }); 
+//}; 
 
 function showContent(nav) {
     link = ('#' + nav);
@@ -58,65 +96,89 @@ function showContent(nav) {
             $('#scroll').width(800);
             var overflow = new Boolean(false);
             var gate_resize = new Boolean(false);
-            var arrow_opacity = 0.5;
+            var arrow_opacity = 0.3;
     
             function setScrollControl(scroll_step) {
-    //            var left_opacity = $('#leftarrow').css('opacity');
-    //            var right_opacity = $('#rightarrow').css('opacity');
-    //            $('#leftarrow').mousedown(function () {
-    //                $(this).css({'opacity': '0.75'});
-    //            }).mouseup(function () {
-    //                $(this).css({ 'opacity': left_opacity });
-    //            });
-    //            $('#rightarrow').mousedown(function () {
-    //                $(this).css({'opacity': '0.75'});
-    //            }).mouseup(function () {
-    //                $(this).css({ 'opacity': right_opacity });
-    //            });
+
+                $('#leftarrow img').mousedown(function () {
+                    $(this).attr('src', 'images/main/leftarrow_red.png');
+                }).mouseup(function () {
+                    $(this).attr('src', 'images/main/leftarrow.png');
+                });
+                $('#rightarrow img').mousedown(function () {
+                    $(this).attr('src', 'images/main/rightarrow_red.png');
+                }).mouseup(function () {
+                    $(this).attr('src', 'images/main/rightarrow.png');
+                });
     
-                $('#leftarrow').click(function() {
-                    thumbs_left = $('#thumbs').offset().left;
-                    gate_left = $('#gate').offset().left;
-                    gap_left = gate_left - thumbs_left;
+                $('#leftarrow img').click(function() {
+                    var thumbs_left = $('#thumbs').offset().left;
+                    var gate_left = $('#gate').offset().left;
+                    var gap_left = gate_left - thumbs_left;
                     if (thumbs_left < gate_left) {
                         if (gap_left >= scroll_step) {
                             $('#thumbs').animate({'left': '+=' + scroll_step + 'px'}, 200);
                             if (gap_left == scroll_step) {
-                                $('#leftarrow').css({'opacity': arrow_opacity });
+                                if ($.browser.msie) {
+                                    $('#leftarrow img').animate({'filter':'alpha(opacity=50'}, 0);
+                                } else {
+                                    $('#leftarrow img').fadeTo(0, arrow_opacity);
+                                }
                             }                      
                         } else {
                             $('#thumbs').animate({'left': '+=' + gap_left + 'px'}, 200, function() {
-                                $('#leftarrow').css({'opacity': arrow_opacity });
+                                if ($.browser.msie) {
+                                    $('#leftarrow img').animate({'filter':'alpha(opacity=50'}, 0);
+                                } else {
+                                    $('#leftarrow img').fadeTo(0, arrow_opacity);
+                                }
                             });
                         }
-                        $('#rightarrow').css({'opacity': '1.0'});
+                        if ($.browser.msie) {
+                            $('#rightarrow img').animate({'filter':'alpha(opacity=100'}, 0);
+                        } else {
+                            $('#rightarrow img').fadeTo(0, 1.0);
+                        }
                     }
                 });
-                $('#rightarrow').click(function() {
-                    thumbs_right = $('#thumbs').offset().left + $('#thumbs').width();
-                    gate_right = $('#gate').offset().left + $('#gate').width();
-                    gap_right = thumbs_right - gate_right;
+                $('#rightarrow img').click(function() {
+                    var thumbs_right = $('#thumbs').offset().left + $('#thumbs').width();
+                    var gate_right = $('#gate').offset().left + $('#gate').width();
+                    var gap_right = thumbs_right - gate_right;
                     if (thumbs_right > gate_right) {
                         if (gap_right >= scroll_step) {
                             $('#thumbs').animate({'left': '-=' + scroll_step + 'px'}, 200);
                             if (gap_right == scroll_step) {
-                                $('#rightarrow').css({'opacity': arrow_opacity });
+                                if ($.browser.msie) {
+                                    $('#rightarrow img').animate({'filter':'alpha(opacity=50'}, 0);
+                                } else {
+                                    $('#rightarrow img').fadeTo(0, arrow_opacity);
+                                }
                             }
                         } else {
                             $('#thumbs').animate({'left': '-=' + gap_right + 'px'}, 200, function() {
-                                $('#rightarrow').css({'opacity': arrow_opacity });
+                                if ($.browser.msie) {
+                                    $('#rightarrow img').animate({'filter':'alpha(opacity=50'}, 0);
+                                } else {
+                                    $('#rightarrow img').fadeTo(0, arrow_opacity);
+                                }
                             });
                         }
-                        $('#leftarrow').css({'opacity': '1.0'});                  
+                        if ($.browser.msie) {
+                            $('#leftarrow img').animate({'filter':'alpha(opacity=100'}, 0);
+                        } else {
+                            $('#leftarrow img').fadeTo(0, 1.0);
+                        }
                     }
                 });
-            }
-    
+            }  
+
             function loadImage(index, max) {
                 if ((location.hash).substring(1) == nav)
                 {
                     if (index < max)
                     {
+
                         var newimg = new Image();
                         $(newimg).load(function () {
                             if ((location.hash).substring(1) == nav)
@@ -142,8 +204,13 @@ function showContent(nav) {
                                         $('#gate').width($('#gate').width() - 10);
                                         gate_resize = true;
                                     }
-                                    $('#rightarrow').animate({'opacity': '1.0'}, 100);
-                                    $('#leftarrow').animate({'opacity': arrow_opacity}, 100);
+                                    if ($.browser.msie) {
+                                        $('#rightarrow img').animate({'filter': 'alpha(opacity=100)'}, 200);
+                                        $('#leftarrow img ').animate({'filter': 'alpha(opacity=50)'}, 200);
+                                    } else {
+                                        $('#rightarrow img').fadeTo(100, 1.0);
+                                        $('#leftarrow img').fadeTo(100, arrow_opacity);
+                                    }
                                 }
                                 
                                 $(this).fadeIn(100, function() {
@@ -168,6 +235,8 @@ function showContent(nav) {
 }
 
 $(document).ready(function() {
+
+    jQuery.preLoadImages("images/main/oldcrow.png");
 
     $('img.img-thumbs').live('click', function() {
         var _img = new Image();
@@ -195,17 +264,21 @@ $(document).ready(function() {
         });
     });
         
-    jQuery.hashchangeDelay = 50; // in milliseconds
+    jQuery.hashchangeDelay = 100; // in milliseconds
 
     $(function() { 
         $(window).bind('hashchange', function() {
             var nav = (location.hash).substring(1);
             if (nav != '')
             {
+                if ($.browser.msie) {
+                    $('img.arrows').unbind("click").animate({'filter': 'alpha(opacity=0)'}, 200);
+                } else {
+                    $('img.arrows').unbind("click").fadeTo(200, 0);
+                }
                 var elements = $('.fadeMe').length;
-                $('.arrow').unbind("click").animate({'opacity': '0'}, 200);
                 $('.fadeMe').fadeOut(200, function() {
-                    elements--
+                    elements--;
                     if (!elements)
                     {
                         showContent(nav);
@@ -215,10 +288,18 @@ $(document).ready(function() {
         });
     })
 
+    if (location.hash == '')
+    {
+        location.hash = "2011";
+    } else {
+        $(window).trigger('hashchange');
+    }
+/*
     if (location.hash != '')   
     {
         $(window).trigger('hashchange');
     }
+*/
     /* else {
         $(function() {
             var elements = $('.fadeMe').length;
@@ -251,7 +332,7 @@ $(document).ready(function() {
                     <HR class="dash">
                     <A href="#sketchbook" class="nav"><P class="menu">SKETCHBOOK</P></A>
                     <HR class="dash">
-                    <P class="menu">BLOG <SPAN class="soon">(coming soon)</SPAN></P>
+                    <A href="http://shadowshapes.com/sketchblog" class="nav" target="_blank"><P class="menu">BLOG</P></A>
                     <HR class="dash">
                     <A href="#about" class="nav"><P class="menu">ABOUT</P></A>
                     <HR class="dash">
@@ -266,16 +347,16 @@ $(document).ready(function() {
     <DIV id="right">
         <DIV id="info" class="fadeMe"></DIV>
         <DIV id="scroll">
-            <DIV id="leftarrow" class="arrow">
-                <DIV class="centerfloat">
+            <DIV class="centerfloat">
+                <DIV id="leftarrow" class="arrow">
                     <IMG class="arrows" src="images/main/leftarrow.png" />
                 </DIV>
             </DIV>
             <DIV id="gate">
                 <DIV id="thumbs" class="fadeMe"></DIV>
             </DIV>
-            <DIV id="rightarrow" class="arrow">
-                <DIV class="centerfloat">
+            <DIV class="centerfloat">
+                <DIV id="rightarrow" class="arrow">
                     <IMG class="arrows" src="images/main/rightarrow.png" />
                 </DIV>
             </DIV>
@@ -295,7 +376,6 @@ $(document).ready(function() {
         skype: rcon.shadowshapes<BR />
         <DIV id="iconrow">
             <A class="info" target="_blank" href="http://roderickconstance.deviantart.com/"><IMG class="contact" src="images/main/icon-deviantart.png"></A>
-            <A class="info" target="_blank" href="http://www.behance.net/shadowshapes"><IMG class="contact" src="images/main/icon-behance.png"></A>
             <A class="info" target="_blank" href="http://www.flickr.com/photos/61171258@N07/"><IMG class="contact" src="images/main/icon-flickr.png"></A>
             <A class="info" target="_blank" href="http://shadowshapes.tumblr.com"><IMG class="contact" src="images/main/icon-tumblr.png"></A>
             <A class="info" target="_blank" href="http://twitter.com/shadowshapes"><IMG class="contact" src="images/main/icon-twitter.png"></A>

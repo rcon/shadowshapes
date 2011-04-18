@@ -1,6 +1,7 @@
 <?php
     $id = $_GET[id];
     $imagesDir = 'images/thumbs/' . $id ;
-    $images = glob($imagesDir . '/*.{jpg,jpeg,png}', GLOB_BRACE);
+    $raw = glob($imagesDir . '/*.{jpg,jpeg,png}', GLOB_BRACE);
+    $images = array_reverse($raw);
     echo json_encode($images);
 ?>
